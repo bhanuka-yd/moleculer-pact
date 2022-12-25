@@ -30,7 +30,7 @@ export default class {
         this.#provider.withRequest({
             method: 'POST',
             path: `/${action}`,
-            data: {
+            body: {
                 params,
                 opts
             }

@@ -1,23 +1,68 @@
 import express from "express";
-
-
-const app = express();
-const port = 80; // default port to listen
-
-// define a route handler for the default home page
-app.get("/", (req, res) => {
-    res.send("Hello world!");
-});
-
-// start the Express server
-app.listen(port, () => {
-    console.log(`server started at http://localhost:${port}`);
-});
-
+import { json as jsonBodyParser } from "body-parser";
+import { Verifier } from '@pact-foundation/pact';
 
 export default class {
-    constructor(broker) {
+
+    #initialized = false;
+    #broker;
+    #app;
+    #providerName;
+    #pactVerifierOptions;
+    #pactVerifier;
+    #listener;
+
+    constructor(providerName, broker, pactVerifierOptions) {
         this.#app = express();
+        this.#app.use(jsonBodyParser())
         this.#broker = broker;
+        this.#providerName = providerName;
+        this.#pactVerifierOptions = pactVerifierOptions;
+    }
+
+    async initialize() {
+        this.#app.post("/:actionName", async (req, res) => {
+            const actionName = req.params.actionName;
+            const { params, opts } = req.body;
+            const ret = await this.#broker.call(`${this.#providerName}.${actionName}`, params, opts);
+
+            res.send({
+                ctx: {},
+                willReturn: ret
+            });
+        });
+        var portPromResolve, portPromReject;
+        const portPromise = new Promise((resolve, reject) => {
+            portPromResolve = resolve;
+            portPromReject = reject;
+        })
+        try {
+            this.#listener = this.#app.listen(0, () => {
+                if (portPromResolve) {
+                    portPromResolve(this.#listener.address().port);
+                }
+            });
+        } catch (e) {
+            portPromReject(e);
+        }
+        const port = await portPromise;
+        const verifierOptions = {
+            provider: this.#providerName,
+            providerBaseUrl: `http://localhost:${port}`,
+            ...this.#pactVerifierOptions
+        };
+        this.#pactVerifier = new Verifier(verifierOptions);
+        this.#initialized = true;
+    }
+    verifyProvider() {
+        if (!this.#initialized) {
+            throw new Error("MoleculerVerifier must be initialized befire verifying. call MoleculerVerifier.initialize first.")
+        }
+        return this.#pactVerifier.verifyProvider();
+    }
+    async destroy() {
+        if (this.#listener) {
+            this.#listener.close();
+        }
     }
 }
