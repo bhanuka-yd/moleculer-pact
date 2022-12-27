@@ -64,6 +64,9 @@ class MoleculerProvider {
   }) {
     __privateGet$2(this, _provider).willRespondWith({
       status: 200,
+      headers: {
+        "Content-Type": pact.MatchersV3.string()
+      },
       body: {
         willReturn
       }

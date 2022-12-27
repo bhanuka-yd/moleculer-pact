@@ -43,9 +43,9 @@ export default class {
     }) {
         this.#provider.willRespondWith({
             status: 200,
-            // headers: {
-            //     'Content-Type': MatchersV3.regex(/application\/(hal\+)?json;[A-Za-z0-9]+=utf-\d/),
-            // },
+            headers: {
+                'Content-Type': MatchersV3.string(),
+            },
             body: {
                 willReturn
             }
