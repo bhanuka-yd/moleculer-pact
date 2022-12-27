@@ -48,7 +48,7 @@ export default class {
         const port = await portPromise;
         const verifierOptions = {
             provider: this.#providerName,
-            providerBaseUrl: `http://localhost:${port}`,
+            providerBaseUrl: `http://127.0.0.1:${port}`,
             ...this.#pactVerifierOptions
         };
         this.#pactVerifier = new Verifier(verifierOptions);

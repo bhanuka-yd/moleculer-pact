@@ -43,9 +43,6 @@ export default class {
     }) {
         this.#provider.willRespondWith({
             status: 200,
-            headers: {
-                'Content-Type': MatchersV3.string(),
-            },
             body: {
                 willReturn
             }

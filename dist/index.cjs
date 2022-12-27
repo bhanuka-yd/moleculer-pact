@@ -64,9 +64,6 @@ class MoleculerProvider {
   }) {
     __privateGet$2(this, _provider).willRespondWith({
       status: 200,
-      headers: {
-        "Content-Type": pact.MatchersV3.string()
-      },
       body: {
         willReturn
       }
@@ -174,7 +171,7 @@ class MoleculerVerifier {
     const port = await portPromise;
     const verifierOptions = {
       provider: __privateGet(this, _providerName),
-      providerBaseUrl: `http://localhost:${port}`,
+      providerBaseUrl: `http://127.0.0.1:${port}`,
       ...__privateGet(this, _pactVerifierOptions)
     };
     __privateSet(this, _pactVerifier, new pact.Verifier(verifierOptions));

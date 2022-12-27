@@ -1,4 +1,4 @@
-import { PactV3, MatchersV3, Verifier } from '@pact-foundation/pact';
+import { PactV3, Verifier } from '@pact-foundation/pact';
 import Axios from 'axios';
 import express from 'express';
 import { json } from 'body-parser';
@@ -62,9 +62,6 @@ class MoleculerProvider {
   }) {
     __privateGet$2(this, _provider).willRespondWith({
       status: 200,
-      headers: {
-        "Content-Type": MatchersV3.string()
-      },
       body: {
         willReturn
       }
@@ -172,7 +169,7 @@ class MoleculerVerifier {
     const port = await portPromise;
     const verifierOptions = {
       provider: __privateGet(this, _providerName),
-      providerBaseUrl: `http://localhost:${port}`,
+      providerBaseUrl: `http://127.0.0.1:${port}`,
       ...__privateGet(this, _pactVerifierOptions)
     };
     __privateSet(this, _pactVerifier, new Verifier(verifierOptions));
