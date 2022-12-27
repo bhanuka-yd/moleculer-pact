@@ -1,4 +1,4 @@
-import { PactV3 } from '@pact-foundation/pact';
+import { PactV3, MatchersV3 } from '@pact-foundation/pact';
 
 export default class {
 
@@ -43,6 +43,9 @@ export default class {
     }) {
         this.#provider.willRespondWith({
             status: 200,
+            // headers: {
+            //     'Content-Type': MatchersV3.regex(/application\/(hal\+)?json;[A-Za-z0-9]+=utf-\d/),
+            // },
             body: {
                 willReturn
             }
