@@ -1,32 +1,32 @@
 {
-  "name": "moleculer-pact",
-  "type": "module",
-  "description": "",
-  "version": "1.0.0",
-  "main": "./dist/index.cjs",
-  "scripts": {
-    "build": "unbuild"
-  },
-  "exports": {
-    ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
+    "name": "moleculer-pact",
+    "type": "module",
+    "description": "",
+    "version": "1.0.0",
+    "main": "./dist/index.cjs",
+    "scripts": {
+        "build": "unbuild"
+    },
+    "exports": {
+        ".": {
+            "import": "./dist/index.mjs",
+            "require": "./dist/index.cjs"
+        }
+    },
+    "keywords": [],
+    "author": "Bhanuka Yd<05_picador_lockets@icloud.com>",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/bhanuka-yd/moleculer-pact"
+    },
+    "devDependencies": {
+        "unbuild": "^1.0.2"
+    },
+    "dependencies": {
+        "@pact-foundation/pact": "^10.4.0",
+        "axios": "^1.2.1",
+        "body-parser": "^1.20.1",
+        "express": "^4.18.2"
     }
-  },
-  "keywords": [],
-  "author": "Bhanuka Yd<05_picador_lockets@icloud.com>",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/bhanuka-yd/json-js-env"
-  },
-  "devDependencies": {
-    "unbuild": "^1.0.2"
-  },
-  "dependencies": {
-    "@pact-foundation/pact": "^10.4.0",
-    "axios": "^1.2.1",
-    "body-parser": "^1.20.1",
-    "express": "^4.18.2"
-  }
 }
