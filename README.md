@@ -65,7 +65,7 @@ describe('Test Describe', () => {
     });
     it('test: isPrintJobReady', () => {
         provider
-            .upnReceiving('a call to check if print job is done')
+            .uponReceiving('a call to check if print job is done')
             .withCall({
                 action: 'isPrintJobReady',
                 params: {

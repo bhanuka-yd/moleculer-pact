@@ -18,8 +18,12 @@ export default class {
             dir: pactFilesDir
         });
     }
-    upnReceiving(msg) {
+    uponReceiving(msg) {
         this.#provider.uponReceiving(msg);
+        return this;
+    }
+    given(providerState, parameters) {
+        this.#provider.given(providerState, parameters)
         return this;
     }
     withCall({

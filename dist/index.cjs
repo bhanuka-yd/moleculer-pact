@@ -39,8 +39,12 @@ class MoleculerProvider {
       dir: pactFilesDir
     }));
   }
-  upnReceiving(msg) {
+  uponReceiving(msg) {
     __privateGet$2(this, _provider).uponReceiving(msg);
+    return this;
+  }
+  given(providerState, parameters) {
+    __privateGet$2(this, _provider).given(providerState, parameters);
     return this;
   }
   withCall({

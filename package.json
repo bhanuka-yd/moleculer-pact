@@ -2,7 +2,7 @@
     "name": "moleculer-pact",
     "type": "module",
     "description": "",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "main": "./dist/index.cjs",
     "scripts": {
         "build": "unbuild"
