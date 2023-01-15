@@ -23,6 +23,12 @@ found a better solution.
 
 ---
 
+## Installation
+
+```bash
+npm i moleculer-pact
+```
+
 ## Example
 
 #### client.test.js (consumer)
