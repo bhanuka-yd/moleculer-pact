@@ -1,6 +1,8 @@
 import express from "express";
-import { json as jsonBodyParser } from "body-parser";
+import bodyParser from "body-parser";
 import { Verifier } from '@pact-foundation/pact';
+
+const jsonBodyParser = bodyParser.json;
 
 export default class {
 

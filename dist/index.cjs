@@ -133,6 +133,7 @@ var __privateSet = (obj, member, value, setter) => {
   return value;
 };
 var _initialized, _broker, _app, _providerName, _pactVerifierOptions, _pactVerifier, _listener;
+const jsonBodyParser = bodyParser.json;
 class MoleculerVerifier {
   constructor(providerName, broker, pactVerifierOptions) {
     __privateAdd(this, _initialized, false);
@@ -143,7 +144,7 @@ class MoleculerVerifier {
     __privateAdd(this, _pactVerifier, void 0);
     __privateAdd(this, _listener, void 0);
     __privateSet(this, _app, express());
-    __privateGet(this, _app).use(bodyParser.json());
+    __privateGet(this, _app).use(jsonBodyParser());
     __privateSet(this, _broker, broker);
     __privateSet(this, _providerName, providerName);
     __privateSet(this, _pactVerifierOptions, pactVerifierOptions);
